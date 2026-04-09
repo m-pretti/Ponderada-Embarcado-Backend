@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Leitura #{{ leitura.id }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Editar Registro #{{ leitura.id }}</h1>
+    
+    <form method="POST" style="max-width: 300px; margin: 20px auto; display: flex; flex-direction: column; gap: 10px;">
+        <label>Temperatura (°C):</label>
+        <input type="number" step="0.01" name="temperatura" value="{{ leitura.temperatura }}" required>
+        
+        <label>Umidade (%):</label>
+        <input type="number" step="0.01" name="umidade" value="{{ leitura.umidade }}" required>
+        
+        <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px; border: none; cursor: pointer;">
+            Salvar Alterações
+        </button>
+        <a href="/historico" style="text-align: center; color: gray;">Cancelar</a>
+    </form>
+</body>
+</html>

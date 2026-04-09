@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico Completo - Estação IoT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1 style="text-align: center;">Histórico de Leituras</h1>
+    
+    <table border="1" style="width: 80%; margin: 20px auto; text-align: center;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Temperatura</th>
+                <th>Umidade</th>
+                <th>Data/Hora</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for leitura in leituras %}
+            <tr>
+                <td>{{ leitura.id }}</td>
+                <td>{{ leitura.temperatura }}°C</td>
+                <td>{{ leitura.umidade }}%</td>
+                <td>{{ leitura.timestamp }}</td>
+                <td>
+                    <a href="{{ url_for('editar', id=leitura.id) }}" style="margin-right: 15px; color: blue; text-decoration: none; font-weight: bold;">
+                        Editar
+                    </a>
+
+                    <form action="{{ url_for('remover', id=leitura.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Deseja realmente excluir este registro?')" style="color: red; cursor: pointer;">
+                            Excluir
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/">← Voltar para o Dashboard</a>
+    </div>
+</body>
+</html>

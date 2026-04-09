@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Meteorológico</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Estação Meteorológica IoT</h1>
+    
+    <div style="width: 80%; margin: auto;">
+        <canvas id="tempChart"></canvas>
+    </div>
+
+    <h2>Últimas 10 Leituras</h2>
+    <table border="1" style="width: 80%; margin: 20px auto; text-align: center;">
+        <tr>
+            <th>ID</th> <th>Temperatura</th> <th>Umidade</th> <th>Timestamp</th>
+        </tr>
+        {% for leitura in leituras %}
+        <tr>
+            <td>{{ leitura.id }}</td>
+            <td>{{ leitura.temperatura }}°C</td>
+            <td>{{ leitura.umidade }}%</td>
+            <td>{{ leitura.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div style="text-align: center;">
+    <a href="/historico">Ver Histórico Completo</a>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('tempChart').getContext('2d');
+        const labels = [{% for l in leituras|reverse %}"{{ l.timestamp[-8:] }}",{% endfor %}];
+        const data = [{% for l in leituras|reverse %}{{ l.temperatura }},{% endfor %}];
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Temperatura (°C)',
+                    data: data,
+                    borderColor: 'rgb(255, 99, 132)',
+                    tension: 0.1
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
