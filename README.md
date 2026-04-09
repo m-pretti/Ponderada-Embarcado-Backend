@@ -17,18 +17,18 @@ Ponderada-Embarcado-Backend/
 ├── src/
 │   ├── static/
 │   │   └── css/
-│   │       └── style.css      # Estilização centralizada
+│   │       └── style.css      
 │   ├── templates/
-│   │   ├── index.html         # Dashboard com gráfico
-│   │   ├── historico.html     # Listagem e exclusão
-│   │   └── editar.html        # Formulário de edição
-│   ├── app.py                 # Servidor Flask (Rotas e API)
-│   ├── database.py            # Módulo de persistência (CRUD)
-│   └── schema.sql             # Definição das tabelas SQL
-├── simulador.py               # Simulador de sensor IoT
-├── requirements.txt           # Dependências do projeto
-├── .gitignore                 # Arquivos ignorados pelo Git
-└── dados.db                   # Banco de dados SQLite (Gerado automaticamente)
+│   │   ├── index.html         
+│   │   ├── historico.html     
+│   │   └── editar.html        
+│   ├── app.py                 
+│   ├── database.py           
+│   └── schema.sql             
+├── simulador.py              
+├── requirements.txt          
+├── .gitignore               
+└── dados.db                  
 ```
 
 ## Como Executar
